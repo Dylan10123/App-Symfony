@@ -133,18 +133,21 @@ class MineralesController extends AbstractController
     }
 
     #[Route('/mineral/updateCrist/{id}/{cristalizacion}', name: 'update_cristalizacion')]
-    public function updateCrist(ManagerRegistry $doctrine, int $id, int $cristalizacion)
+    public function updateCrist(ManagerRegistry $doctrine, int $id, string $cristalizacion)
     {
         $entityManager = $doctrine->getManager();
         $repositorio = $doctrine->getRepository(Mineral::class);
         $mineral = $repositorio->find($id);
+        $repo = $doctrine->getRepository(Cristalizacion::class);
+        $crist = $repo->findOneBy(['nombre' => $cristalizacion]);
+
         if ($mineral) {
-            $mineral->setCristalizacion($cristalizacion);
+            $mineral->setCristalizacion($crist);
             try {
                 $entityManager->flush();
                 return $this->render('minerales/ficha_mineral.html.twig', ['mineral' => $mineral]);
             } catch (\Exception $e) {
-                return new Response("Error al actualizar los datos");
+                return new Response("Error al actualizar los datos" . $e->getMessage());
             }
         } else {
             return $this->render('minerales/ficha_mineral.html.twig', ['mineral' => null]);
