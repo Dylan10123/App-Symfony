@@ -1,0 +1,9 @@
+<ul>
+    <li style="color:  #ab61ff ;"><strong>{{ mineral.nombre }}</strong></li>
+    <li><strong>Color</strong>: {{ mineral.color }}</li>
+    <li><strong>Densidad</strong>: {{ mineral.densidad }}</li>
+    <li><strong>Valor</strong>: {{ mineral.valor }} €/g</li>
+    {% if mineral.cristalizacion.nombre %}
+        <li><strong>Cristalización</strong>: {{ mineral.cristalizacion.nombre }}</li>
+    {% endif %}
+</ul>

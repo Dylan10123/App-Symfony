@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Minerales
+{% endblock %}
+
+{% block body %}
+	<h1>Listado de contactos</h1>
+	{% if minerales %}
+		{% for mineral in minerales %}
+			{{ include ('partials/datos_mineral.html.twig', {'mineral': mineral}) }}
+		{% endfor %}
+	{% else %}
+		<p>No se han encontrado contactos</p>
+	{% endif %}
+{% endblock %}

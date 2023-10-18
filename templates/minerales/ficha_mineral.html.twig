@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Minerales
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>Mineral:
+		</h1>
+
+		{% if mineral %}
+			{{ include ('partials/datos_mineral.html.twig', {'mineral': mineral}) }}
+		{% else %}
+			<p>Mineral no encontrado</p>
+		{% endif %}
+	</div>
+{% endblock %}
